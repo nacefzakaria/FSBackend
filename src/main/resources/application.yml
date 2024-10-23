@@ -6,14 +6,11 @@ management:
   endpoints:
     web:
       exposure:
-        include: health, metrics, prometheus  # Exposing the Prometheus endpoint
+        include: '*'  # Exposing the Prometheus endpoint
   endpoint:
     health:
       show-details: always  # To include detailed health status
-  elastic:
-    metrics:
-      export:
-        enabled: true
+
 
 spring:
   application:
