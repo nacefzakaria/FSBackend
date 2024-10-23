@@ -1,0 +1,26 @@
+server:
+  port: 1000  # Port for the Spring Boot application inside Docker
+
+spring:
+  application:
+    name: Full-stack  # Name of the Spring Boot application
+  data:
+    rest:
+      basePath: /api  # Base path for REST endpoints
+  datasource:
+    url: jdbc:postgresql://postgres:5432/testbd  # Use 'db' as the service name if using Docker Compose
+    username: intranetEHC_user  # Database username
+    password: password  # Database password
+    driver-class-name: org.postgresql.Driver  # PostgreSQL driver
+  jpa:
+    hibernate:
+      ddl-auto: update  # Auto-update the schema
+    database: postgresql  # Database type
+    database-platform: org.hibernate.dialect.PostgreSQLDialect  # PostgreSQL dialect
+  flyway:
+    baseline-on-migrate: true  # Configure Flyway migrations
+    enabled: true  # Enable Flyway
+    baseline-description: "init"  # Baseline description for migrations
+    baseline-version: 0  # Initial version for migrations
+    user: ${spring.datasource.username}  # Use the datasource username for Flyway
+    password: ${spring.datasource.password}  # Use the datasource password for Flyway
