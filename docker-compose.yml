@@ -1,4 +1,24 @@
 services:
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - microservices-net
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3100:3000"   # Corrected Grafana port
+    networks:
+      - microservices-net
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on:
+      - prometheus
+
   postgres:
     container_name: ms_pg_sql_fs
     image: postgres
